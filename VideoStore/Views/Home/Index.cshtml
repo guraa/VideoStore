@@ -9,38 +9,45 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Se alla våra filmer!</a></p>
 </div>
 
+
 <div class="row">
+
     <div class="col-md-4">
         <h2>Latest movies!</h2>
         <p>
 
-
             @foreach (var item in Model.Where(s => s.id < Model.Count()).ToList())
-            {
-                <h4> @item.title </h4>
-                <h6> @item.description </h6>
+    {
+        <h4> @item.title </h4>
+        <h6> @item.description </h6>
 
 
-            }
-
+}
 
             @foreach (var item in Model)
-            {
+    {
 
-                if (item.Image != null)
-                {
-                    String imageConvert = Convert.ToBase64String(item.Image);
-                    String image = string.Format("data:image/" + "jpeg" + "; base64,{0}", imageConvert); //imagetype can be e.g. gif, jpeg, png etc.
-                    <img src="@image" />
-                    @Html.ActionLink("Hyr film", "Edit", new { id = item.id })
-                }
+        if (item.Image != null)
+        {
+            String imageConvert = Convert.ToBase64String(item.Image);
+            String image = string.Format("data:image/" + "jpeg" + "; base64,{0}", imageConvert); //imagetype can be e.g. gif, jpeg, png etc.
+            <img src="@image" />
+            using (Html.BeginForm("RentMovie", "Home"))
+    {
+
+        <input type="submit" value="Create" />
+
+}
+
+}
 
 
 
 
 
 
-            }
+}
+
         </p>
     </div>
     <div class="col-md-4">

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<VideoStore.Models.RentDetailsView>
+
+@{
+    ViewBag.Title = "RentMovie";
+}
+
+
+<h2>Hej @Html.DisplayFor(m => User.Identity.Name), här kan du se vilka filmer som du har hyrt </h2>     <br />
+
+<div>
+    <h4>RentalModels</h4>
+    <hr />
+ </div>  
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            One of three columns
+        </div>
+        <div class="col-sm">
+            One of three columns
+        </div>
+        <div class="col-sm">
+            One of three columns
+        </div>
+    </div>
+</div>   
+    @foreach (var item in Model)
+    {
+
+
+
+    <h3>@item.title</h3><br />
+    <h3>@item.desscription</h3><br />
+    <h3>@item.rentDate</h3><br />
+    <h3>@item.returnDate</h3><br />
+     String imageConvert = Convert.ToBase64String(item.Image);
+            String image = string.Format("data:image/" + "jpeg" + "; base64,{0}", imageConvert); //imagetype can be e.g. gif, jpeg, png etc.
+                             <img src="@image" alt="..." class="img-thumbnail">
+    
+    }
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

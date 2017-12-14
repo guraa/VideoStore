@@ -5,13 +5,14 @@ using System.Web;
 
 namespace VideoStore.Models
 {
-    public class RentalModels
+    public class RentDetailsView
     {
-        public int id { get; set; }
-        public int videoId { get; set; }
-        public string customerId { get; set; }
+        public string customer { get; set; }
         public DateTime rentDate { get; set; }
         public DateTime returnDate { get; set; }
-        
+        public string desscription { get; set; }
+        public string title { get; set; }
+        public byte[] Image { get; set; }
+
     }
 }
