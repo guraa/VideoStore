@@ -79,7 +79,7 @@ namespace VideoStore.Controllers
             return View(video);
         }
 
-
+        [Authorize]
         public ActionResult RentMovie(Customer rental)
         {
             List<RentDetailsView> model = new List<RentDetailsView>();
@@ -123,7 +123,7 @@ namespace VideoStore.Controllers
 
     [Authorize]
         [HttpPost]
-        public ActionResult RentMovie(string button)
+        public ActionResult RentMovie(int reportName)
         {
             Customer cust = new Customer();
 
@@ -131,7 +131,7 @@ namespace VideoStore.Controllers
 
             var rental = new List<RentalModels>
                 {
-                new RentalModels {customerId = User.Identity.Name, videoId = 1, rentDate = today, returnDate = today.AddDays(14) }
+                new RentalModels {customerId = User.Identity.Name, videoId = reportName , rentDate = today, returnDate = today.AddDays(14) }
                 };
 
             foreach (var item in rental)

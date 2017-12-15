@@ -7,38 +7,22 @@
 
 <h2>Hej @Html.DisplayFor(m => User.Identity.Name), här kan du se vilka filmer som du har hyrt </h2>     <br />
 
-<div>
-    <h4>RentalModels</h4>
-    <hr />
- </div>  
 
-<div class="container">
+@foreach (var item in Model)
+{
+    String imageConvert = Convert.ToBase64String(item.Image);
+    String image = string.Format("data:image/" + "jpeg" + "; base64,{0}", imageConvert); //imagetype can be e.g. gif, jpeg, png etc.
+<div class="well well-lg">
     <div class="row">
-        <div class="col-sm">
-            One of three columns
-        </div>
-        <div class="col-sm">
-            One of three columns
-        </div>
-        <div class="col-sm">
-            One of three columns
-        </div>
+        <div class="col-sm-1"><img class="img-responsive" width="100" src="@image" alt="Generic placeholder image"></div>
+        <div class="col-sm-4"><h4>@item.title</h4><br />@item.desscription</div>
+        <div class="col-sm-4">Film hyrd: @item.rentDate.ToShortDateString()<br />Film återlämnas: @item.returnDate.ToShortDateString()</div>
     </div>
-</div>   
-    @foreach (var item in Model)
-    {
+    </div>
 
 
 
-    <h3>@item.title</h3><br />
-    <h3>@item.desscription</h3><br />
-    <h3>@item.rentDate</h3><br />
-    <h3>@item.returnDate</h3><br />
-     String imageConvert = Convert.ToBase64String(item.Image);
-            String image = string.Format("data:image/" + "jpeg" + "; base64,{0}", imageConvert); //imagetype can be e.g. gif, jpeg, png etc.
-                             <img src="@image" alt="..." class="img-thumbnail">
-    
-    }
+}
 
 
 <p>

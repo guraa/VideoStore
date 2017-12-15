@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<VideoStore.Models.VideoModels>
 @{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="jumbotron">
@@ -9,47 +10,41 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Se alla våra filmer!</a></p>
 </div>
 
-
 <div class="row">
 
     <div class="col-md-4">
         <h2>Latest movies!</h2>
         <p>
 
-            @foreach (var item in Model.Where(s => s.id < Model.Count()).ToList())
-    {
-        <h4> @item.title </h4>
-        <h6> @item.description </h6>
-
-
-}
-
             @foreach (var item in Model)
-    {
 
-        if (item.Image != null)
         {
-            String imageConvert = Convert.ToBase64String(item.Image);
-            String image = string.Format("data:image/" + "jpeg" + "; base64,{0}", imageConvert); //imagetype can be e.g. gif, jpeg, png etc.
-            <img src="@image" />
-            using (Html.BeginForm("RentMovie", "Home"))
+            <h4> @item.title </h4>
+            <h6> @item.description </h6>
+        int value = item.id;
+
+        String imageConvert = Convert.ToBase64String(item.Image);
+        String image = string.Format("data:image/" + "jpeg" + "; base64,{0}", imageConvert); //imagetype can be e.g. gif, jpeg, png etc.
+        <img src="@image" />
+    using (Html.BeginForm("RentMovie", "Home"))
     {
 
-        <input type="submit" value="Create" />
+        <button type="submit" value="@item.id" name="reportName" class="btn btn-primary btn-lg">Hyr</button>
 
-}
-
-}
-
-
-
-
+  
 
 
 }
 
-        </p>
-    </div>
+
+
+
+
+
+}
+
+            </p>
+        </div>
     <div class="col-md-4">
         <h2>Get more libraries</h2>
         <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
