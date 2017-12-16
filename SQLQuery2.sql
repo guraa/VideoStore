@@ -1,0 +1,1 @@
+﻿select * from VideoModels where Image is null;

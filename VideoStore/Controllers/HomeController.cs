@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using VideoStore.Models;
 
 namespace VideoStore.Controllers
@@ -17,10 +18,24 @@ namespace VideoStore.Controllers
     {
         private VideoContext db = new VideoContext();
         private Customer cust = new Customer();
+        private ApplicationDbContext customer = new ApplicationDbContext();
         public ActionResult Index()
         {
             var videos = db.Video.ToList();
             return View(videos);
+        }
+
+        public ActionResult ViewMovies()
+        {
+            var videos = db.Video.ToList();
+            return View(videos);
+        }
+
+        [Authorize(Users = "admin")]
+        public ActionResult ViewCustomers()
+        {
+            var users = customer.Users.ToList();
+            return View(users);
         }
 
 
@@ -62,16 +77,24 @@ namespace VideoStore.Controllers
 
             return View();
         }
+
+        [Authorize(Users = "admin")]
         public ActionResult Create()
         {
             return View();
         }
 
+
         [HttpPost]
-        public ActionResult Create(VideoModels video)
+        public ActionResult Create(VideoModels video, HttpPostedFileBase file)
         {
+
             if (ModelState.IsValid)
             {
+                using (var binaryReader = new BinaryReader(file.InputStream))
+                {
+                    video.Image = binaryReader.ReadBytes(file.ContentLength);
+                }
                 db.Video.Add(video);
                 db.SaveChanges();
                 return RedirectToAction("Index");

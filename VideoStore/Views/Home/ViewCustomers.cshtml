@@ -1,0 +1,21 @@
+﻿@model IEnumerable<VideoStore.Models.ApplicationUser>
+
+    @{
+        ViewBag.Title = "Alla våra kunder";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Våra kunder</h2>
+
+    @foreach (var item in Model)
+    {
+        <div class="well well-lg">
+            <div class="row">
+                <div class="col-sm-4"><h4>Användarnamn: @item.UserName<br />Ålder: @item.Age</h4></div>
+
+            </div>
+        </div>
+
+
+
+    }

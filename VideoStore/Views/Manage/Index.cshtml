@@ -1,60 +1,28 @@
 ﻿@model VideoStore.Models.IndexViewModel
-@{
-    ViewBag.Title = "Din sida";
-}
 
-<h2>@ViewBag.Title.</h2>
+<h2>Hej @Html.DisplayFor(m => User.Identity.Name)!</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Dina uppgifter</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>Ändra ditt lösenord:</dt>
         <dd>
-            [
-            @if (Model.HasPassword)
+            <div class="well well-lg">
+                <div class="row">
+                    @if (Model.HasPassword)
             {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
+                        <div class="col-sm-4"><h4>@Html.ActionLink("Ändra ditt lösenord", "ChangePassword")</h4></div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-4"><h4>@Html.ActionLink("Sätt lösenord", "SetPassword")</h4></div>
+                    }
 
-            @foreach(var item in Model.Logins)
-            {
-                item
-            }
-            <table class="table">
-                <caption>List of users</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
+                    
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td></td>
+                </div>
+            </div>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-
-                    </tr>
-                </tbody>
-            </table>
-
-            ]
         </dd>
 
 

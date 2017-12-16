@@ -34,5 +34,7 @@ namespace VideoStore.Models
         {
             return new ApplicationDbContext();
         }
+
+    //    public System.Data.Entity.DbSet<VideoStore.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

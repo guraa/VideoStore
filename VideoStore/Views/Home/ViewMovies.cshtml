@@ -1,0 +1,28 @@
+﻿@model IEnumerable<VideoStore.Models.VideoModels>
+
+@{
+    ViewBag.Title = "ViewMovies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Våra filmer</h2>
+
+@foreach (var item in Model)
+{
+    String imageConvert = Convert.ToBase64String(item.Image);
+    String image = string.Format("data:image/" + "jpeg" + "; base64,{0}", imageConvert); //imagetype can be e.g. gif, jpeg, png etc.
+    <div class="well well-lg">
+        <div class="row">
+            <div class="col-sm-1"><img class="img-responsive" width="100" src="@image" alt="Generic placeholder image"></div>
+            <div class="col-sm-4"><h4>@item.title</h4><br />@item.description</div>
+            <div class="col-sm-4">@using (Html.BeginForm("RentMovie", "Home"))
+                {
+                <button type="submit" value="@item.id" name="reportName" class="btn btn-primary btn-lg">Hyr</button>
+
+            }</div>
+        </div>
+    </div>
+
+
+
+}

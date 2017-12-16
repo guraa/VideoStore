@@ -10,6 +10,6 @@ namespace VideoStore.Models
     {
         public DbSet<VideoModels> Video { get; set; }
         public DbSet<RentalModels> Rental { get; set; }
-       // public DbSet<ApplicationUser> User { get; set; }
+        //public DbSet<ApplicationUser> User { get; set; }
     }
 }

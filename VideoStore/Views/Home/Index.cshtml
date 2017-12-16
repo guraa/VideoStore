@@ -11,10 +11,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <p>
-                    Film på nätet!
-                </p>
-                @using (Html.BeginForm("ViewMovie", "Home"))
+
+                @using (Html.BeginForm("ViewMovies", "Home"))
     {
                 <button type="submit" value="Se alla filmer" name="reportName" class="btn btn-primary btn-lg">Se alla filmer</button>
 
@@ -33,19 +31,21 @@
     {
         String imageConvert = Convert.ToBase64String(item.Image);
         String image = string.Format("data:image/" + "jpeg" + "; base64,{0}", imageConvert);
-        <div class="col-md-4">
+        <div class="col-sm-1"><img class="img-responsive" width="120" src="@image" alt="Generic placeholder image">
+            <br />
+
+            @using (Html.BeginForm("RentMovie", "Home"))
+                {
+                <button type="submit" value="@item.id" name="reportName" class="btn btn-primary btn-lg">Hyr</button>
+
+            }
+    </div>
+        <div class="col-md-3">
             
             <p>
                 <h4> @item.title </h4>
                 <h6> @item.description </h6>
 
-                <img class="img-responsive" width="100" src="@image" alt="Generic placeholder image">
-
-                @using (Html.BeginForm("RentMovie", "Home"))
-                {
-                <button type="submit" value="@item.id" name="reportName" class="btn btn-primary btn-lg">Hyr</button>
-
-                }
 
 
             </p>

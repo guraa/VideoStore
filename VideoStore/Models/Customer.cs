@@ -9,6 +9,6 @@ namespace VideoStore.Models
     {
         public List<VideoModels> Videos { get; set; }
         public List<RentalModels> Rental { get; set; }
-        public List<ApplicationUser> User { get; set; }
+       // public List<ApplicationUser> User { get; set; }
     }
 }
